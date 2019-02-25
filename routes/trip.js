@@ -1,26 +1,30 @@
 var express = require('express');
 var router = express.Router();
 
+// Aquí gestionamos http://localhost:3000/mytrips
+router.get('/mytrips', function (req, res) { 
+  res.render('mytrips');    
+});
 
-// Aquí gestionamos http://localhost:3000/??
 
-/* API DESCRIPTION 5 metodos de routers */ 
-
+/* API DESCRIPTION */ 
 
 const tripControllers = require ('../controllers/tripController')
 
-router.get('/', tripControllers.findAll);
-router.get('/:id', tripControllers.findOne);
+// Get featured/all trips
+router.get('/api/trips', tripControllers.findAll);
 
-router.delete('/:id', tripControllers.deleteOne);
+// Get a trip
+router.get('/api/trips/:id', tripControllers.findOne);
 
-router.post('/', function (req, res, next) {
-  res.send('not yet implemented');
-});
+// Delete a trip
+router.delete('/api/trips/:id', tripControllers.deleteOne);
 
-router.put('/:id', function (req, res, next) {
-  res.send('not yet implemented');
-});
+// Update a trip
+router.patch('/api/trips/:id', tripControllers.update);
+
+// Create new trip
+router.post('/api/trips/new', tripControllers.save);
 
 
 

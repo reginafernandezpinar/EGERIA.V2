@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Trip Form</title>
+
+    <!-- Icon Font-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/mytrips.css" />
+    <link href="https://cesiumjs.org/releases/1.54/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+
+    <!--  JavaScript: jQuery.js, Popper.js, Bootstrap.js, Cesium.js -->
+    <script src="../js/lib/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="../js/lib/bootstrap.min.js"></script>
+    <script src="https://cesiumjs.org/releases/1.54/Build/Cesium/Cesium.js"></script>
+    <script src="../js/mytrips.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light main-nav">
+            <a class="navbar-brand m-3" href="http://localhost:3000/">EGERIA</a>
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse mynavbar" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link mr-4 active" href="#">My trips<span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link mr-4" href="#">Help</a>
+                    <a class="nav-item nav-link mr-4" href="#">log out</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <table class="table mt-4">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Notes</th>
+                        <th scope="col">I travel with</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="tablerow-trip">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container">
+            <button class="btn btn-outline-dark" id="startTrip">Start a trip</button>
+            <div class="showForm container mt-5"></div>
+        </div>
+
+        <div class="container mt-5">
+            <form>
+                <div class="form-group">
+                    <label for="nameInput">Trip name</label>
+                    <input type="text" class="form-control" id="nameInput"
+                        placeholder="Trip name">
+                </div>
+                <div class="form-group">
+                    <label for="companionshipSelect">I´m travelling with</label>
+                    <select class="form-control" id="companionshipSelect">
+                        <option>just me</option>
+                        <option>a friend</option>
+                        <option>my family</option>
+                        <option>my partner</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="descriptionTextArea">Trip notes</label>
+                    <textarea class="form-control" id="descriptionTextArea" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                        <label for="photoInput">Trip Photo</label>
+                        <input type="text" class="form-control" id="photoInput"
+                        placeholder="Photo url">
+                </div>
+                <button type='submit' id="saveButton" class="btn btn-dark mb-2">Save</button> 
+            </form>
+        </div>
+
+
+    </main>
+
+</body>
+
+</html>

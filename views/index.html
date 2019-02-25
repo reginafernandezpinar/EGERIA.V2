@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Egeria</title>
+
+    <!-- Icon Font-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
+    <link href="https://cesiumjs.org/releases/1.54/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+
+    <!--  JavaScript: jQuery.js, Popper.js, Bootstrap.js, Cesium.js -->
+    <script src="../js/lib/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="../js/lib/bootstrap.min.js"></script>
+    <script src="https://cesiumjs.org/releases/1.54/Build/Cesium/Cesium.js"></script>
+    <script src="../js/main.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light main-nav">
+            <a class="navbar-brand text-white m-3" href="http://localhost:3000/">EGERIA</a>
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars burguer-menu"></i>
+            </button>
+            <div class="collapse navbar-collapse mynavbar" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link text-white mr-4" href="#">Help</a>
+                    <a class="nav-item nav-link text-white mr-4" href="#">Sign in</a>
+                    <a class="nav-item nav-link text-white mr-4" href="http://localhost:3000/mytrips">log in</a>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid main-title">
+            <h1 class="mb-3">Plan your trip</h1>
+            <h2>For the avid driver, Egeria can make a journey far more interesting than usual</h2>
+        </div>
+    </header>
+
+    <main>
+
+        <div id="trips-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+            <div id="listTrips" class="carousel-inner">
+            </div>
+        </div>
+
+        <div class="container-fluid d-flex justify-content-center explore-container">
+            <a id="exploreTrips" href="#cards-anchor" class="btn btn-outline-secondary btn-lg explore-button">Explore places</a>
+        </div>
+
+        <a name="cards-anchor"></a>
+        <div class="container">
+            <div class="container-fluid d-flex flex-column align-items-center my-3 py-3">
+                <h1>Looking for some inspiration?</h1>
+                <h1>Find the best trip for you</h1>
+            </div>
+            <div id="cards-container" class="row">
+                
+            </div>
+        </div>
+
+
+        <button id="startTrip">Start a trip</button>
+
+        <!-- to implement in final project -->
+        <div id="cesiumContainer"></div> 
+    </main>
+
+</body>
+
+</html>

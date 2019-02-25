@@ -6,45 +6,41 @@ const dbConn = require('../config/mysql');
 // Callback: cb llama a la funcion del controlador findAll. Asi se comunican entre ellos porque es asincrona
 
 // Get featured/all trips
-const findAll = (cb) => {
+const findAll = (limit, cb) => {
     let sql = `SELECT * FROM trip`;
-    // if (req.query.limit) {
-    //     sql += ` LIMIT ${req.query.limit}`;
-    // }??
-    dbConn.query (sql, (err, res) => {
-        if (err) cb(err, null);
-        cb (null, res);
-    });
+    if (limit) {
+        sql += ` LIMIT ${limit}`;
+    }
+    dbConn.query (sql, (err, res) => cb (err, res));
 };
 
 
 // Create new trip
-const createNewTrip = (req, res) => {
-    let sql = `INSERT INTO trip (name, description, companionship, photo) VALUES ('${req.body.name}', '${req.body.description}', '${req.body.companionship}', '${req.body.photo}')`;
-    // console.log(req.body.name);
+const save = (trip, cb) => {
+    let sql = `INSERT INTO trip (name, description, companionship, photo) VALUES ('${trip.name}', '${trip.description}', '${trip.companionship}', '${trip.photo}')`;
+    // console.log(trip.name);
     dbConn.query(sql, function (err, result) {
         if (err) {
-            res.send(err);
+            cb(err, null);
         } else {
-            let trip = {
+            let newTrip = {
                 id: result.insertId,
                 name: req.body.name,
                 description: req.body.description,
                 companionship: req.body.companionship,
                 photo: req.body.photo
             }
-            res.send(trip);
+            cb(null, newTrip);
         }
     });
 }
 
 
-
-// Promesa // me da error!!
-const findCustomerById = id => {
-    const theQuery = SQL_FIND_BY_ID(id);
+// Promesa
+const findTripById = id => {
+    const sql = SQL_FIND_BY_ID(id);
     return new Promise ((resolve, reject) => {
-        dbConn.query(theQuery, (err, result) => {
+        dbConn.query(sql, (err, result) => {
             if (err) reject(err);
             resolve(result);
         })
@@ -55,6 +51,6 @@ const findCustomerById = id => {
 // estos metodos los usa el controlador
 module.exports = {
     findAll,
-    findCustomerById,/*
-    removeCustomerById*/
+    findTripById,/*
+    deleteTripById*/
 };

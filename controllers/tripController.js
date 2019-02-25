@@ -3,21 +3,29 @@
 const tripModel = require("../models/tripModel"); // llamamos al modelo
 
 function findAll (req, res) {
-    tripModel.findAll( (err, result) => {
-        // if (req.query.limit) {
-        // sql += ` LIMIT ${req.query.limit}`;
-        // }??
+    tripModel.findAll(req.query.limit, (err, result) => {
         if (err) res.send({message: 'something failed', error: err});
         res.send(result);
     });
 }
+
+
+function save(req, res) {
+    tripModel.save(req.body, (err, result) => {
+        if (err) res.send({message: 'something failed', error: err});
+        res.send(result);
+    });
+}
+
+
+
 
 function findOne(req, res) {
     const id = req.params.id;
     tripModel.findTripById(id)
     .then(result => {res.send(result); // responde al resolve
     })
-    .catch(e => { // responde al reject
+    .catch(err => { // responde al reject
         res.send({message:'something failed', error: err});
     })
     
@@ -25,20 +33,20 @@ function findOne(req, res) {
 
 function deleteOne(req, res) {
     const id = req.params.id;
-    const trip = tripModel.removeTripById(id);
+    const trip = tripModel.deleteTripById(id);
     res.send(trip);
 }
 
-function save(req, res) {
-    const newtrip = {
-        id: req.body.id,
-        name: req.body.name,
 
-    }
+
+function update(req,res){
+
 }
+
 
 module.exports = {
     findAll,
     findOne,
-    deleteOne
+    deleteOne,
+    update
 };
