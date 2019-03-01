@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 // Aquí gestionamos http://localhost:3000/mytrips
-router.get('/mytrips', function (req, res) { 
+router.get('/', function (req, res) { 
   res.render('mytrips');    
 });
 
@@ -11,8 +11,8 @@ router.get('/mytrips', function (req, res) {
 
 const tripControllers = require ('../controllers/tripController')
 
-// // Get featured/all trips
-// router.get('/api/trips', tripControllers.findAll);
+// Get featured/all trips
+router.get('/api/trips', tripControllers.findAll);
 
 // Get a trip
 router.get('/api/trips/:id', tripControllers.findOne);

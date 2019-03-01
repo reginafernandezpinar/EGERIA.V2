@@ -2,15 +2,29 @@ DROP DATABASE IF EXISTS egeria;
 CREATE DATABASE egeria;
 USE egeria;
 
+-- Table structure for table `user`
+CREATE TABLE user (
+    id INT NOT NULL AUTO_INCREMENT,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(id)
+);
+
 -- Table structure for table `trip`
 CREATE TABLE trip (
     id INT NOT NULL AUTO_INCREMENT,
+    user_id INT NOT NULL,
     name VARCHAR(255) NOT NULL,
     description VARCHAR(400) NULL,
     companionship VARCHAR(20) NOT NULL, -- solo, couple, family
     photo VARCHAR(200) null, -- url
     creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY(id)
+    PRIMARY KEY(id),
+    FOREIGN KEY user_fk(user_id) REFERENCES user(id)
 );
 
 -- Table structure for table `track`

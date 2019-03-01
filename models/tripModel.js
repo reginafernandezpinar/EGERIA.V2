@@ -1,4 +1,4 @@
-// MODELO REAL: se comunica con la DB
+// MODELO se comunica con la DB
 
 const dbConn = require('../config/mysql');
 
