@@ -7,5 +7,14 @@ router.get('/', function(req, res, next) {
 });
 
 
+const tripControllers = require ('../controllers/tripController');
+
+
+// Get featured/all trips
+router.get('/api/trips', tripControllers.findAll);
+
+// Get a trip
+router.get('/api/trips/:id', tripControllers.findOne);
+
 
 module.exports = router;

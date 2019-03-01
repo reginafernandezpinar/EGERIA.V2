@@ -1,0 +1,78 @@
+
+/* -------- NAVBAR -------- */
+.main-nav {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+}
+
+a.nav-link:hover {
+    border-bottom: solid white 1px;
+}
+
+@media (min-width: 992px) {
+    .mynavbar {
+        justify-content: flex-end;
+    }
+}
+
+.main-title{
+    position: absolute;
+    top: 40%;
+    color: white;
+    text-align: center;
+}
+
+.burguer-menu {
+    color:white;
+}
+ 
+
+/* ------ CARROUSEL ------- */
+#trips-carousel {
+    min-width: 100%;
+    height: 100vh;
+    z-index: -1;
+    margin-bottom: 70px;
+}  
+
+.trip-slide {
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.explore-container {
+    position: absolute;
+    bottom: 0px;
+}
+
+.explore-button:hover {
+    color: white;
+    background-color: transparent;
+    border-color: white
+}
+
+
+/*  -------------- TRIP CARD LIST ---------*/
+
+
+.trip-card a {
+    text-decoration: none;
+}
+
+.trip-card-image {
+    height: 200px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+
+  

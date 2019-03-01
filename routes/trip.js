@@ -11,8 +11,8 @@ router.get('/mytrips', function (req, res) {
 
 const tripControllers = require ('../controllers/tripController')
 
-// Get featured/all trips
-router.get('/api/trips', tripControllers.findAll);
+// // Get featured/all trips
+// router.get('/api/trips', tripControllers.findAll);
 
 // Get a trip
 router.get('/api/trips/:id', tripControllers.findOne);

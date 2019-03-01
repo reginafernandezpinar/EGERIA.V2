@@ -1,4 +1,4 @@
-// MODELO REAL: se comunica con la DB:
+// MODELO REAL: se comunica con la DB
 
 const dbConn = require('../config/mysql');
 
@@ -36,9 +36,35 @@ const save = (trip, cb) => {
 }
 
 
-// Promesa
+// Get a trip (Promesa)
 const findTripById = id => {
-    const sql = SQL_FIND_BY_ID(id);
+    let sql = `SELECT * FROM trip WHERE id = ${id}`;
+    return new Promise ((resolve, reject) => {
+        dbConn.query(sql, (err, result) => {
+            if (err) reject(err);
+            resolve(result);
+        })
+    });
+}
+
+
+// Delete a trip
+const deleteTripById = id => {
+    let sql = `DELETE FROM trip WHERE id = ${id}`;
+    return new Promise ((resolve, reject) => {
+        dbConn.query(sql, (err, result) => {
+            if (err) reject(err);
+            resolve(result);
+        })
+    });
+}
+//const removeTripById = id => trips.splice(trips.findIndex(trip => trip.id == id), 1)
+
+
+// Update a trip
+const updateTripById = (trip, id) => {
+    let sql = `UPDATE trip SET name = '${trip.name}', description = '${trip.description}', companionship = '${trip.companionship}', photo = '${trip.photo}' WHERE id = '${id}'`;
+    // console.log(trip.name);
     return new Promise ((resolve, reject) => {
         dbConn.query(sql, (err, result) => {
             if (err) reject(err);
@@ -51,6 +77,8 @@ const findTripById = id => {
 // estos metodos los usa el controlador
 module.exports = {
     findAll,
-    findTripById,/*
-    deleteTripById*/
+    save,
+    findTripById,
+    deleteTripById,
+    updateTripById
 };
