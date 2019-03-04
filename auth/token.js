@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
-const salt = require('./salt'); // get our salt file
+const salt = require('./salt').secret; // get our salt file
 
 function verifyToken(req, res, next) {
     // check header or url parameters or post parameters for token
@@ -8,7 +8,7 @@ function verifyToken(req, res, next) {
         return res.status(403).send({ auth: false, message: 'Bad credentials' });
 
     // verifies secret and checks exp
-    jwt.verify(token, salt.secret, function (err, decoded) {
+    jwt.verify(token, salt, function (err, decoded) {
         if (err)
             return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
 
@@ -26,7 +26,7 @@ function verifyParam(req, res, next) {
         return res.status(403).send({ auth: false, message: 'Bad credentials' });
 
     // verifies secret and checks exp
-    jwt.verify(token, salt.secret, function (err, decoded) {
+    jwt.verify(token, salt, function (err, decoded) {
         if (err)
             return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
 
@@ -39,7 +39,7 @@ function verifyParam(req, res, next) {
 
 function buildToken(key) {
     // if user is found and password is valid. Create a token
-    var token = jwt.sign({ id: key }, salt.secret, {
+    var token = jwt.sign({ id: key }, salt, {
         //expiresIn: 86400 // expires in 24 hours
         expiresIn: 3600 // expires in 1 hour
     });

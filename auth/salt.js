@@ -1,4 +1,4 @@
-const secret = 'themostsecretwordeverormaybenotatall89734891273897238947589347895';
+const secret = 'themostsecretwordever';
 
 module.exports = {
     secret

@@ -1,12 +1,13 @@
 var express = require('express');
 var router = express.Router();
-const tripControllers = require ('../controllers/tripController')
+const tripControllers = require ('../controllers/tripController');
+const Token = require('../auth/token');
+
 
 // Aquí gestionamos http://localhost:3000/mytrips
 
-
-router.get('/', function (req, res) { 
-  res.render('mytrips');    
+router.get('/:token/', Token.verifyParam, function(req, res, next) { 
+  res.render('mytrips', {token: req.params.token});
 });
 
 
@@ -19,7 +20,7 @@ router.get('/api/trips', tripControllers.findAll);
 router.get('/api/trips/:id', tripControllers.findOne);
 
 // Delete a trip
-router.delete('/api/trips/:id', tripControllers.deleteOne);
+router.delete('/api/trips/:id', Token.verifyParam, tripControllers.deleteOne);
 
 // Update a trip
 router.patch('/api/trips/:id', tripControllers.update);
