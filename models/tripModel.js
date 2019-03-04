@@ -1,6 +1,6 @@
 // MODELO se comunica con la DB
 
-const dbConn = require('../config/mysql');
+const dbConn = require('../config/db/mysql');
 
 
 // Callback: cb llama a la funcion del controlador findAll. Asi se comunican entre ellos porque es asincrona
@@ -17,7 +17,7 @@ const findAll = (limit, cb) => {
 
 // Create new trip
 const save = (trip, cb) => {
-    let sql = `INSERT INTO trip (name, description, companionship, photo) VALUES ('${trip.name}', '${trip.description}', '${trip.companionship}', '${trip.photo}')`;
+    let sql = `INSERT INTO trip (user_id, name, description, companionship, photo) VALUES ('${trip.user}', '${trip.name}', '${trip.description}', '${trip.companionship}', '${trip.photo}')`;
     // console.log(trip.name);
     dbConn.query(sql, function (err, result) {
         if (err) {
@@ -25,6 +25,7 @@ const save = (trip, cb) => {
         } else {
             let newTrip = {
                 id: result.insertId,
+                user_id: req.body.user,
                 name: req.body.name,
                 description: req.body.description,
                 companionship: req.body.companionship,
@@ -63,7 +64,7 @@ const deleteTripById = id => {
 
 // Update a trip
 const updateTripById = (trip, id) => {
-    let sql = `UPDATE trip SET name = '${trip.name}', description = '${trip.description}', companionship = '${trip.companionship}', photo = '${trip.photo}' WHERE id = '${id}'`;
+    let sql = `UPDATE trip SET user_id = '${trip.user}', name = '${trip.name}', description = '${trip.description}', companionship = '${trip.companionship}', photo = '${trip.photo}' WHERE id = '${id}'`;
     // console.log(trip.name);
     return new Promise ((resolve, reject) => {
         dbConn.query(sql, (err, result) => {

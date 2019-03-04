@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>User Form</title>
+
+    <!-- Icon Font-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/mytrips.css" />
+    <!-- <link href="https://cesiumjs.org/releases/1.54/Build/Cesium/Widgets/widgets.css" rel="stylesheet"> -->
+
+    <!--  JavaScript: jQuery.js, Popper.js, Bootstrap.js, Cesium.js -->
+    <script src="/js/lib/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="/js/lib/bootstrap.min.js"></script>
+    <!-- <script src="https://cesiumjs.org/releases/1.54/Build/Cesium/Cesium.js"></script> -->
+    <script src="/js/login.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark main-nav">
+            <a class="navbar-brand text-white" href="http://localhost:3000/">EGERIA</a>
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse"
+                data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars burguer-menu"></i>
+            </button>
+            <div class="collapse navbar-collapse mynavbar" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link text-white mr-4" href="#">Home</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md mb-4">
+                    <div>
+                        <h5 class="my-4">I´m an user</h5>
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label for="emailInput2">Email address</label>
+                            <input type="email" class="form-control" id="emailInput2"
+                                aria-describedby="emailHelp" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="passwordInput2">Password</label>
+                            <input type="password" class="form-control" id="passwordInput2" placeholder="Password">
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                            <label class="form-check-label" for="dropdownCheck">Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="login">Log in</button>
+                    </form>
+                </div>
+
+                <div class="col-md mb-4">
+                    <div>
+                        <h5 class="my-4">New around here? Sign up!</h5>
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label for="usernameInput">Name</label>
+                            <input type="text" class="form-control" id="usernameInput" placeholder="Enter your user name">
+                            <small id="nameHelp" class="form-text text-muted">This is how other users will see
+                                you.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailInput1">Email address</label>
+                            <input type="email" class="form-control" id="emailInput1" aria-describedby="emailHelp"
+                                placeholder="Enter email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="passwordInput1">Password</label>
+                            <input type="password" class="form-control" id="passwordInput1" placeholder="Password">
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="signup">Sign up</button>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+    </main>
+
+</body>
+
+</html>

@@ -5,12 +5,10 @@ USE egeria;
 -- Table structure for table `user`
 CREATE TABLE user (
     id INT NOT NULL AUTO_INCREMENT,
-    firstname VARCHAR(50) NOT NULL,
-    lastname VARCHAR(50) NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
     username VARCHAR(50) NOT NULL,
-    email VARCHAR(50) NOT NULL,
     password VARCHAR(50) NOT NULL,
-    creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(id)
 );
 
@@ -58,21 +56,25 @@ CREATE TABLE trackpoint (
 );
 
 
+-- ---------------- USER DATA -------------------------
+INSERT INTO user (email, username, password) values ('knh@fke.com', 'ana', 'ana123');
+INSERT INTO user (email, username, password) values ('ksf@fkj.com', 'pepe', 'pepe123');
+INSERT INTO user (email, username, password) values ('k@fk.com', 'ana', 'ana123');
 
------------------- TRIP DATA -----------------------------
+-- ---------------- TRIP DATA -----------------------------
+INSERT INTO trip (user_id, name, description, companionship, photo) values (1, 'Rome', 'Trip to Rome', 'couple', 'https://lonelyplanetimages.imgix.net/mastheads/stock-photo-roman-sunset-77415821.jpg?sharp=10&vib=20&w=1200');
+INSERT INTO trip (user_id, name, description, companionship, photo) values (1, 'Japan', 'Planning trip to Japan', 'couple', 'https://www.asgam.com/wp-content/uploads/2018/12/japan.jpg');
+INSERT INTO trip (user_id, name, description, companionship, photo) values (1, 'Spain', 'A roadtrip in Spain', 'family', 'https://www.telegraph.co.uk/content/dam/Travel/2017/December/zahara-GettyImages-620354288.jpg?imwidth=450');
+INSERT INTO trip (user_id, name, description, companionship, photo) values (2, 'Andalucia', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', 'couple', 'https://www.planetware.com/photos-large/E/spain-sierra-nevada-capileira.jpg');
+INSERT INTO trip (user_id, name, description, companionship, photo) values (2, 'Canada', 'Planning trip to Lorem ipsum dolor sit amet, consectetur adipiscing', 'couple', 'https://i1.wp.com/viajesazulmarino.com/blog/wp-content/uploads/canada_.png?resize=913%2C607&ssl=1');
+INSERT INTO trip (user_id, name, description, companionship, photo) values (3, 'Iceland', 'A roadtrip in Lorem ipsum dolor sit amet, consectetur', 'family', 'http://geographical.co.uk/media/k2/items/cache/0c84ab19d43307514d9470b51a44e5d3_XL.jpg');
+INSERT INTO trip (user_id, name, description, companionship, photo) values (3, 'Granada', 'Planning trip to Lorem ipsum dolor sit amet', 'couple', 'http://www.turgranada.es/wp-content/blogs.dir/2/files_mf/cache/th_8e735c5fb9f20d17096a998987c257d7_sierra-nevada0.jpg?x53512');
+INSERT INTO trip (user_id, name, description, companionship, photo) values (3, 'France', 'A roadtrip Lorem ipsum dolor sit amet, consectetur', 'family', 'https://cdn1.guias-viajar.com/wp-content/uploads/2017/08/Castillo-Najac-FB-011.jpg');
 
-INSERT INTO trip (name, description, companionship, photo) values ('Rome', 'Trip to Rome', 'couple', 'https://lonelyplanetimages.imgix.net/mastheads/stock-photo-roman-sunset-77415821.jpg?sharp=10&vib=20&w=1200');
-INSERT INTO trip (name, description, companionship, photo) values ('Japan', 'Planning trip to Japan', 'couple', 'https://www.asgam.com/wp-content/uploads/2018/12/japan.jpg');
-INSERT INTO trip (name, description, companionship, photo) values ('Spain', 'A roadtrip in Spain', 'family', 'https://www.telegraph.co.uk/content/dam/Travel/2017/December/zahara-GettyImages-620354288.jpg?imwidth=450');
-INSERT INTO trip (name, description, companionship, photo) values ('Andalucia', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', 'couple', 'https://www.planetware.com/photos-large/E/spain-sierra-nevada-capileira.jpg');
-INSERT INTO trip (name, description, companionship, photo) values ('Canada', 'Planning trip to Lorem ipsum dolor sit amet, consectetur adipiscing', 'couple', 'https://i1.wp.com/viajesazulmarino.com/blog/wp-content/uploads/canada_.png?resize=913%2C607&ssl=1');
-INSERT INTO trip (name, description, companionship, photo) values ('Iceland', 'A roadtrip in Lorem ipsum dolor sit amet, consectetur', 'family', 'http://geographical.co.uk/media/k2/items/cache/0c84ab19d43307514d9470b51a44e5d3_XL.jpg');
-INSERT INTO trip (name, description, companionship, photo) values ('Granada', 'Planning trip to Lorem ipsum dolor sit amet', 'couple', 'http://www.turgranada.es/wp-content/blogs.dir/2/files_mf/cache/th_8e735c5fb9f20d17096a998987c257d7_sierra-nevada0.jpg?x53512');
-INSERT INTO trip (name, description, companionship, photo) values ('France', 'A roadtrip Lorem ipsum dolor sit amet, consectetur', 'family', 'https://cdn1.guias-viajar.com/wp-content/uploads/2017/08/Castillo-Najac-FB-011.jpg');
+
 
 
 --------------- TRACK DATA -----------------------------
-
 INSERT INTO track (trip_id, name, description, starting_point, destination_point, photo, distance) values (3, 'granada', 'visit to Alhambra', 'Malaga', 'Granada', 'no photo', 150);
 INSERT INTO track (trip_id, name, description, starting_point, destination_point, photo, distance) values (1, 'malaga', 'visit to malaga', 'antequera', 'malaga', 'no photo', 150);
 INSERT INTO track (trip_id, name, description, starting_point, destination_point, photo, distance) values (1, 'fiumicino', 'fiumicino', 'Malaga', 'Roma', 'no photo', 150);

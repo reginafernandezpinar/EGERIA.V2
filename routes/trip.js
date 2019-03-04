@@ -1,15 +1,16 @@
 var express = require('express');
 var router = express.Router();
+const tripControllers = require ('../controllers/tripController')
 
 // Aquí gestionamos http://localhost:3000/mytrips
+
+
 router.get('/', function (req, res) { 
   res.render('mytrips');    
 });
 
 
 /* API DESCRIPTION */ 
-
-const tripControllers = require ('../controllers/tripController')
 
 // Get featured/all trips
 router.get('/api/trips', tripControllers.findAll);
@@ -25,6 +26,7 @@ router.patch('/api/trips/:id', tripControllers.update);
 
 // Create new trip
 router.post('/api/trips/new', tripControllers.save);
+
 
 
 

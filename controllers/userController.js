@@ -1,11 +1,11 @@
 const userModel = require('../models/userModel');
-// const crypt = require('../util/crypt-util');
-// const Token = require('../auth/token')
+var crypt = require('../crypt-util');
+const Token = require('../auth/token')
 
 
-function doLogin(req, res) {
-    const un = req.body.username;
-    userModel.findByUsername(un)
+function loginUser(req, res) {
+    const ue = req.body.email;
+    userModel.findByUseremail(ue)
         .then(result => { 
             if (result.length !== 1) {
                 res.render('login', { message: { type: 'error', text: 'bad credentials' } });
@@ -22,7 +22,7 @@ function doLogin(req, res) {
                     res.render('user', {
                         'message': { text: 'Login success', type: 'success' },
                         'username': un,
-                        'fullname': user.fullname,
+                        'firstname': user.firstname,
                         'token': Token.buildToken(user.id) // el q sea
                     });
                 }
@@ -32,6 +32,24 @@ function doLogin(req, res) {
             res.render('error', { message: { color: 'red', text: 'something failed' }, error: err });
         })
 }
+
+function registerUser  (req, res) {
+    console.log('asldfjaksdf');
+    const user = req.body;
+    user.password = crypt.encrypt(user.password);
+    userModel.createUser(user)
+        .then(result => {
+            res.send(result);
+        })
+        .catch(err => {
+            res.send({message:'something failed', error: err})
+        }
+    );
+};
+
+
+
 module.exports = {
-    doLogin,
+    loginUser,
+    registerUser
 }

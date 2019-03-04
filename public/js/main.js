@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     // Get first 3 (featured) trips. Featured parameter will be implemented in the final project
-    $.get('/api/trips?limit=3&featured=true', function (trips) {
+    $.get('/mytrips/api/trips?limit=3&featured=true', function (trips) {
         console.log(trips);
 
         for (let i = 0; i < trips.length; i++) {
@@ -28,7 +28,7 @@ $(document).ready(function () {
 
 
     // Get all trips
-    $.get('/api/trips', function (trips) {
+    $.get('/mytrips/api/trips', function (trips) {
         console.log(trips);
 
         trips.forEach(trip => {

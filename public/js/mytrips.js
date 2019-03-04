@@ -4,7 +4,7 @@ var currentTrip = -1;
 $(document).ready(function () {
 
     // Get all trips
-    $.get('/api/trips', function (trips) {
+    $.get('/mytrips/api/trips', function (trips) {
         // console.log(trips);
 
         trips.forEach(trip => {
@@ -47,7 +47,7 @@ $(document).ready(function () {
                 companionship: $('#companionshipSelect option:selected').text()
             };
 
-            $.post('/api/trips/new', body, function (trip) {
+            $.post('/mytrips/api/trips/new', body, function (trip) {
                 //toastr.success('Trip successfully created'); to implement in final project
                 alert('Trip successfully created');
                 // Empty the form fields
@@ -83,7 +83,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: 'PATCH',
-                url: `/api/trips/${currentTrip}`,
+                url: `/mytrips/api/trips/${currentTrip}`,
                 data: body,
                 beforeSend: function(){
                     alert('Check fields');
@@ -121,7 +121,7 @@ function addListenersToEditAndDeleteButtons() {
 
             $.ajax({
                 type: 'DELETE',
-                url: `/api/trips/${tripId}`,
+                url: `/mytrips/api/trips/${tripId}`,
                 success: () => {
                     $(currentButton).parent().parent().remove();
                 }
@@ -137,7 +137,7 @@ function addListenersToEditAndDeleteButtons() {
         let editButton = event.currentTarget;
         currentTrip = $(editButton).attr('data-id');
 
-        $.get(`/api/trips/${currentTrip}`, function (trips) {
+        $.get(`/mytrips/api/trips/${currentTrip}`, function (trips) {
             trips.forEach(trip => {
                 $('#nameInput').val(trip.name); 
                 $('#companionshipSelect option:selected').text(trip.companionship);

@@ -10,7 +10,6 @@ function findAll (req, res) {
     });
 }
 
-
 // Create new trip
 function save(req, res) {
     tripModel.save(req.body, (err, result) => {
@@ -18,8 +17,6 @@ function save(req, res) {
         res.send(result);
     });
 }
-
-
 
 // Get a trip
 function findOne(req, res) {
@@ -33,7 +30,6 @@ function findOne(req, res) {
     
 }
 
-
 // Delete a trip
 function deleteOne(req, res) {
     const id = req.params.id;
@@ -46,14 +42,7 @@ function deleteOne(req, res) {
     
 }
 
-// function deleteOne(req, res) {
-//     const id = req.params.id;
-//     const trip = tripModel.deleteTripById(id);
-//     res.send(trip);
-// }
-
-
-
+// Update a trip
 function update(req,res){
     const id = req.params.id;
     const trip = req.body;
@@ -64,6 +53,12 @@ function update(req,res){
         res.send({message:'something failed', error: err})
     )
 }
+
+// function deleteOne(req, res) {
+//     const id = req.params.id;
+//     const trip = tripModel.deleteTripById(id);
+//     res.send(trip);
+// }
 
 
 module.exports = {
