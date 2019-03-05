@@ -5,7 +5,7 @@ const Token = require('../auth/token')
 
 function loginUser(req, res) {
     const ue = req.body.email;
-    userModel.findByUseremail(ue)
+    userModel.findUserByEmail(ue)
         .then(result => {
             if (result.length !== 1) {
                 res.render('login', { message: { type: 'error', text: 'bad credentials' } });
@@ -21,10 +21,7 @@ function loginUser(req, res) {
                 } else {
                     let token = Token.buildToken(user.id); // si envio user se crea el token con todo el objeto
                     console.log("token:" + token);
-                    res.redirect(`/mytrips/${token}`);
-                    // res.render('mytrips', {
-                    //     'token': Token.buildToken(user.id)
-                    // });
+                    res.redirect(`/?token=${token}`);
                 }
             }
         })

@@ -1,9 +1,13 @@
 $(document).ready(function () {
 
+    // get token from url if exists
+    // https://stackoverflow.com/questions/33265812/best-http-authorization-header-type-for-jwt
+    
+    var token = new URL(window.location.href).searchParams.get('token');
+
     // Get first 3 (featured) trips. Featured parameter will be implemented in the final project
     $.get('/mytrips/api/trips?limit=3&featured=true', function (trips) {
         console.log(trips);
-
         for (let i = 0; i < trips.length; i++) {
             let trip = trips[i];
 
@@ -30,14 +34,13 @@ $(document).ready(function () {
     // Get all trips
     $.get('/mytrips/api/trips', function (trips) {
         console.log(trips);
-
         trips.forEach(trip => {
             $('#cards-container').append(`
             <div class="col-sm-4 mb-3">
                 <div class="card trip-card">
                     <div class="trip-card-image" style="background-image: url('${trip.photo}');">
                     </div>
-                    <a href="/trips/${trip.id}">
+                    <a href="/trips/${trip.id}?token=${token}">
                         <div class="card-body text-dark">
                             <h5 class="card-title">${trip.name}</h5>
                             <p class="card-text">${trip.description}</p>
@@ -48,11 +51,9 @@ $(document).ready(function () {
         });
     });
 
-
       // var viewer = new Cesium.Viewer('cesiumContainer', {
     //     homeButton: false,
     //     animation: false
     // });
-
 
 });

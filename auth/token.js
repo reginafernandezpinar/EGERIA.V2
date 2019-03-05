@@ -3,7 +3,8 @@ const salt = require('./salt').secret; // get our salt file
 
 function verifyToken(req, res, next) {
     // check header or url parameters or post parameters for token
-    var token = req.header('x-access-token');
+    var token = req.header('Authorization');
+    
     if (!token)
         return res.status(403).send({ auth: false, message: 'Bad credentials' });
 
@@ -17,25 +18,6 @@ function verifyToken(req, res, next) {
         next();
     });
 }
-
-
-function verifyParam(req, res, next) {
-    // check header or url parameters or post parameters for token
-    var token = req.params.token;
-    if (!token)
-        return res.status(403).send({ auth: false, message: 'Bad credentials' });
-
-    // verifies secret and checks exp
-    jwt.verify(token, salt, function (err, decoded) {
-        if (err)
-            return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
-
-        // if everything is good, save to request for use in other routes
-        req.userId = decoded.id;
-        next();
-    });
-}
-
 
 function buildToken(key) {
     // if user is found and password is valid. Create a token

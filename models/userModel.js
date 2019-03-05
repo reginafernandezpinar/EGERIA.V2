@@ -1,7 +1,7 @@
 const dbConn = require('../config/db/mysql');
 
 
-const findByUseremail = ue => {
+const findUserByEmail = ue => {
     let sql = `SELECT * FROM user WHERE email = '${ue}'`;
     return new Promise ((resolve, reject) => {
         dbConn.query(sql, (err, result) => {
@@ -27,6 +27,6 @@ const createUser = user => {
 
 
 module.exports = {
-    findByUseremail,
+    findUserByEmail,
     createUser
 }
