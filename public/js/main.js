@@ -2,9 +2,8 @@ $(document).ready(function () {
 
     // get token from url if exists
     // https://stackoverflow.com/questions/33265812/best-http-authorization-header-type-for-jwt
+    // var token = new URL(window.location.href).searchParams.get('token');
     
-    var token = new URL(window.location.href).searchParams.get('token');
-
     // Get first 3 (featured) trips. Featured parameter will be implemented in the final project
     $.get('/mytrips/api/trips?limit=3&featured=true', function (trips) {
         console.log(trips);
@@ -40,7 +39,7 @@ $(document).ready(function () {
                 <div class="card trip-card">
                     <div class="trip-card-image" style="background-image: url('${trip.photo}');">
                     </div>
-                    <a href="/trips/${trip.id}?token=${token}">
+                    <a href="/trips/${trip.id}">
                         <div class="card-body text-dark">
                             <h5 class="card-title">${trip.name}</h5>
                             <p class="card-text">${trip.description}</p>

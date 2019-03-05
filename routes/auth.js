@@ -3,7 +3,7 @@ var router = express.Router();
 const userController = require("../controllers/userController");
 
 // Aquí gestionamos http://localhost:3000/auth
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
     res.render('login');
 });
 
@@ -11,6 +11,8 @@ router.get('/', function (req, res, next) {
 router.post('/register', userController.registerUser);
 
 router.post('/login', userController.loginUser);
+
+
 
 
 // logout

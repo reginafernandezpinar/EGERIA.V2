@@ -19,13 +19,14 @@ function loginUser(req, res) {
                 if (cryptPasswd !== dbPwd) {
                     res.render('login', { message: { type: 'error', text: 'bad credentials' } });
                 } else {
-                    let token = Token.buildToken(user.id); // si envio user se crea el token con todo el objeto
+                    let token = Token.buildToken(user.id); // si envio (user) se crea el token con todo el objeto
                     console.log("token:" + token);
-                    res.redirect(`/?token=${token}`);
+                    res.redirect(`/token/${token}`);
                 }
             }
         })
         .catch(err => {
+            console.log("error login: " + err);
             res.render('error', { message: { color: 'red', text: 'something failed' }, error: err });
         })
 }

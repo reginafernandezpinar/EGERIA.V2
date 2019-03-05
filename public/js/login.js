@@ -18,16 +18,21 @@ $(document).ready(function () {
     })
 
     // login user
+    /*
     $('#login').on('click', function (event) {
-        event.preventDefault();
+        //event.preventDefault();
+        /*
         let data = {
             email: $('#emailInput2').val(),
             password: $('#passwordInput2').val()
         }
+
         $.post('/auth/login', data, function (res) {
             console.log(res);
         })
+        
     })
+    */
 
 });
 

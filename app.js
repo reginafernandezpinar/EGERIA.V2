@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 // Route handlers
-var indexRouter = require('./routes/index');
+var homeRouter = require('./routes/home');
 var tripsRouter = require('./routes/trip');
 var authRouter = require('./routes/auth');
 
@@ -26,7 +26,7 @@ app.set('view engine', 'html');
 
 
 // routes
-app.use('/', indexRouter);   // toda peticion (desde el front) q empiece por / lo envia a indexRouter
+app.use('/', homeRouter);   // toda peticion (desde el front) q empiece por / lo envia a indexRouter
 app.use('/auth', authRouter);
 
 // protected routes
