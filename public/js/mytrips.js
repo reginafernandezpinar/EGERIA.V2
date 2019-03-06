@@ -3,6 +3,9 @@ var currentTrip = -1;
 
 $(document).ready(function () {
 
+    // get token from url if exists (https://stackoverflow.com/questions/33265812/best-http-authorization-header-type-for-jwt)
+    var token = new URL(window.location.href).searchParams.get('token');
+
     // Get all trips
     $.get('/mytrips/api/trips', function (trips) {
         // console.log(trips);
@@ -80,7 +83,6 @@ $(document).ready(function () {
                 photo: $('#photoInput').val(),
                 companionship: $('#companionshipSelect option:selected').text()
             };
-
             $.ajax({
                 type: 'PATCH',
                 url: `/mytrips/api/trips/${currentTrip}`,

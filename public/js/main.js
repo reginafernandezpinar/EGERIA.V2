@@ -1,9 +1,30 @@
 $(document).ready(function () {
 
-    // get token from url if exists
-    // https://stackoverflow.com/questions/33265812/best-http-authorization-header-type-for-jwt
-    // var token = new URL(window.location.href).searchParams.get('token');
+    // get token from url if exists (https://stackoverflow.com/questions/33265812/best-http-authorization-header-type-for-jwt)
+    var token = new URL(window.location.href).searchParams.get('token');
     
+    if (token) {
+        $('#publicNavbar').hide();
+        $('#navbarNavAltMarkup').append(`
+            <div class="navbar-nav">
+                <a class="nav-item nav-link text-white mr-4" href="#">About</a>
+                <a class="nav-item nav-link text-white mr-4" href="/mytrips/?token=${token}">My trips</a>
+                <a class="nav-item nav-link text-white mr-4" href="/auth/logout">Log out</a>
+            </div>`);
+        
+        $.ajax({
+            type: 'GET',
+            url: '/auth/whoAmI',
+            beforeSend: function(request) {
+                request.setRequestHeader("Authorization", token); // before sending the req it provides the token in the header to be available
+            },
+            success: (res) => {
+                console.log('Hi', res.username); // res is the object user, we take the username
+                // code 
+            }
+        });
+    }
+
     // Get first 3 (featured) trips. Featured parameter will be implemented in the final project
     $.get('/mytrips/api/trips?limit=3&featured=true', function (trips) {
         console.log(trips);
@@ -22,7 +43,7 @@ $(document).ready(function () {
                   ), url('${trip.photo}');">
                 </div>`);
         }
-        // inside carrousel optional:
+        // inside carrousel - optional:
         // <div class="carousel-caption d-none d-md-block">
         //  <h1>${trip.name}</h1>
         //  <p>${trip.description}</p>
@@ -39,7 +60,7 @@ $(document).ready(function () {
                 <div class="card trip-card">
                     <div class="trip-card-image" style="background-image: url('${trip.photo}');">
                     </div>
-                    <a href="/trips/${trip.id}">
+                    <a href="/trips/${trip.id}?token=${token}">
                         <div class="card-body text-dark">
                             <h5 class="card-title">${trip.name}</h5>
                             <p class="card-text">${trip.description}</p>

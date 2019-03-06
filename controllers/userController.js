@@ -12,16 +12,16 @@ function loginUser(req, res) {
             } else {
                 const user = result[0];
                 const pwd = req.body.password;
-                const dbPwd = user.password; //user.password, la recoge de la base de datos, para poder compararlas
+                const dbPwd = user.password; //user.password, la recoge de la base de datos para poder compararlas
                 const cryptPasswd = crypt.encrypt(pwd);
                 console.log("dbPwd:" + dbPwd);
                 console.log("crPwd:" + cryptPasswd);
                 if (cryptPasswd !== dbPwd) {
                     res.render('login', { message: { type: 'error', text: 'bad credentials' } });
                 } else {
-                    let token = Token.buildToken(user.id); // si envio (user) se crea el token con todo el objeto
+                    let token = Token.buildToken(user); //  (user) crea el token con todo el objeto
                     console.log("token:" + token);
-                    res.redirect(`/token/${token}`);
+                    res.redirect(`/?token=${token}`);
                 }
             }
         })
@@ -32,7 +32,7 @@ function loginUser(req, res) {
 }
 
 
-function registerUser  (req, res) {
+function registerUser (req, res) {
     let user = req.body;
     user.password = crypt.encrypt(user.password);
     userModel.createUser(user)
@@ -41,13 +41,19 @@ function registerUser  (req, res) {
         })
         .catch(err => {
             res.render('error', { message: { color: 'red', text: 'something failed' }, error: err });
-        }
-    );
-};
+        });
+}
 
+
+function whoAmI (req, res) {
+    console.log('whoAmI');
+    console.log('user', Object.keys(req.user)); // ver en consola comandos las claves del objeto
+    res.send(req.user);
+}
 
 
 module.exports = {
     loginUser,
-    registerUser
+    registerUser,
+    whoAmI
 }

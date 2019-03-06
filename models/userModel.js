@@ -3,7 +3,6 @@ const dbConn = require('../config/db/mysql');
 
 const findUserByEmail = ue => {
     let sql = `SELECT * FROM user WHERE email = '${ue}'`;
-    console.log("select: " + sql);
     return new Promise ((resolve, reject) => {
         dbConn.query(sql, (err, result) => {
             console.log(err);
