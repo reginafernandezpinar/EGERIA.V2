@@ -1,15 +1,13 @@
 var newTripFlag = true;
 var currentTrip = -1;
+// get token from url
+var token = new URL(window.location.href).searchParams.get('token');
 
 $(document).ready(function () {
 
-    // get token from url if exists (https://stackoverflow.com/questions/33265812/best-http-authorization-header-type-for-jwt)
-    var token = new URL(window.location.href).searchParams.get('token');
-
-    // Get all trips
-    $.get('/mytrips/api/trips', function (trips) {
-        // console.log(trips);
-
+    // Get all trips from the user
+    $.get(`/mytrips/api/userTrips?token=${token}`, function (trips) {
+        console.log(trips);
         trips.forEach(trip => {
             $('#tablerow-trip').append(`
             <tr>
@@ -49,15 +47,19 @@ $(document).ready(function () {
                 photo: $('#photoInput').val(),
                 companionship: $('#companionshipSelect option:selected').text()
             };
-
-            $.post('/mytrips/api/trips/new', body, function (trip) {
-                //toastr.success('Trip successfully created'); to implement in final project
-                alert('Trip successfully created');
-                // Empty the form fields
-                emptyTripForm();
-
-                //Add new row
-                $('#tablerow-trip').append(`
+            $.ajax({
+                type: 'POST',
+                url: '/mytrips/api/new',
+                data: body,
+                beforeSend: function (request) {
+                    request.setRequestHeader("Authorization", token); // before sending the req it provides the token in the header to be available
+                },
+                success: (trip) => {
+                    alert('Trip successfully created');
+                    // Empty the form fields
+                    emptyTripForm();
+                    //Add new row
+                    $('#tablerow-trip').append(`
                     <tr>
                         <td>${trip.name}</td>
                         <td>${trip.description}</td>
@@ -71,9 +73,9 @@ $(document).ready(function () {
                             </button>
                         </td>
                     </tr>`
-                );
-                
-                addListenersToEditAndDeleteButtons();
+                    );
+                    addListenersToEditAndDeleteButtons();
+                }
             });
         } else {
             // Update existing trip
@@ -85,26 +87,22 @@ $(document).ready(function () {
             };
             $.ajax({
                 type: 'PATCH',
-                url: `/mytrips/api/trips/${currentTrip}`,
+                url: `/mytrips/api/${currentTrip}`,
                 data: body,
-                beforeSend: function(){
-                    alert('Check fields');
+                beforeSend: function (request) {
+                    request.setRequestHeader("Authorization", token); // before sending the req it provides the token in the header to be available
                 },
-                success: (res) => {
-                    console.log(`${res}`)
+                success: () => {
+                    alert('Trip updated successfully');
+                    window.location = window.location.href; // reload page
                 }
             });
         }
     });
-
-
 });
 
 
-
-
 // This function clears all fields from the trip form
-
 function emptyTripForm() {
     $('#nameInput').val('');
     $('#photoInput').val('');
@@ -112,8 +110,7 @@ function emptyTripForm() {
 }
 
 
-// This function delete or edit a trip row that was dinamically created 
-
+// This function deletes or edits a trip row that was dinamically created 
 function addListenersToEditAndDeleteButtons() {
     // Delete a trip
     $('.remove-trip').on('click', (event) => {
@@ -123,7 +120,10 @@ function addListenersToEditAndDeleteButtons() {
 
             $.ajax({
                 type: 'DELETE',
-                url: `/mytrips/api/trips/${tripId}`,
+                url: `/mytrips/api/${tripId}`,
+                beforeSend: function (request) {
+                    request.setRequestHeader("Authorization", token); // before sending the req it provides the token in the header to be available
+                },
                 success: () => {
                     $(currentButton).parent().parent().remove();
                 }
@@ -141,7 +141,7 @@ function addListenersToEditAndDeleteButtons() {
 
         $.get(`/mytrips/api/trips/${currentTrip}`, function (trips) {
             trips.forEach(trip => {
-                $('#nameInput').val(trip.name); 
+                $('#nameInput').val(trip.name);
                 $('#companionshipSelect option:selected').text(trip.companionship);
                 $('#descriptionTextArea').val(trip.description);
                 $('#photoInput').val(trip.photo);

@@ -7,11 +7,10 @@ $(document).ready(function () {
         $('#publicNavbar').hide();
         $('#navbarNavAltMarkup').append(`
             <div class="navbar-nav">
-                <a class="nav-item nav-link text-white mr-4" href="#">About</a>
                 <a class="nav-item nav-link text-white mr-4" href="/mytrips/?token=${token}">My trips</a>
                 <a class="nav-item nav-link text-white mr-4" href="/auth/logout">Log out</a>
             </div>`);
-        
+        // get username from token:
         $.ajax({
             type: 'GET',
             url: '/auth/whoAmI',
@@ -19,8 +18,8 @@ $(document).ready(function () {
                 request.setRequestHeader("Authorization", token); // before sending the req it provides the token in the header to be available
             },
             success: (res) => {
-                console.log('Hi', res.username); // res is the object user, we take the username
-                // code 
+                // res is the username value in the user object
+                $('#welcomeMessage').append(`<h4 class="mt-3 font-weight-light">Welcome ${res}</h4`)
             }
         });
     }
@@ -43,7 +42,7 @@ $(document).ready(function () {
                   ), url('${trip.photo}');">
                 </div>`);
         }
-        // inside carrousel - optional:
+        // carrousel inside - optional:
         // <div class="carousel-caption d-none d-md-block">
         //  <h1>${trip.name}</h1>
         //  <p>${trip.description}</p>
@@ -71,9 +70,9 @@ $(document).ready(function () {
         });
     });
 
-      // var viewer = new Cesium.Viewer('cesiumContainer', {
-    //     homeButton: false,
-    //     animation: false
-    // });
+    let viewer = new Cesium.Viewer('cesiumContainer', {
+        homeButton: false,
+        animation: false
+    });
 
 });

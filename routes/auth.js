@@ -16,8 +16,6 @@ router.post('/login', userController.loginUser);
 router.get('/whoAmI', Token.verifyToken, userController.whoAmI);
 
 
-
-
 // fake logout
 router.get('/logout', function (req, res, next) {
     res.redirect('/auth');

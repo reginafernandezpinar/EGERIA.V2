@@ -1,4 +1,4 @@
-const mysql = require("mysql"); // creamos esta variable. Antes npm install mysql --save
+const mysql = require("mysql"); // npm install mysql --save
 
 // create connection to db
 const dbConn = mysql.createConnection({
@@ -12,9 +12,9 @@ const dbConn = mysql.createConnection({
   dbConn.connect(err => {
     if (err) {
       throw err;
-      console.log('connecting egeria db...');
     }
   });
+console.log('connecting egeria db');
 
 module.exports = dbConn;
 

@@ -16,24 +16,6 @@ $(document).ready(function () {
             // alert (Hello ${res.username}!... ) undefined
         })
     })
-
-    // login user
-    /*
-    $('#login').on('click', function (event) {
-        //event.preventDefault();
-        /*
-        let data = {
-            email: $('#emailInput2').val(),
-            password: $('#passwordInput2').val()
-        }
-
-        $.post('/auth/login', data, function (res) {
-            console.log(res);
-        })
-        
-    })
-    */
-
 });
 
 
