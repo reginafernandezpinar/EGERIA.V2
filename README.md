@@ -1,2 +1,2 @@
 # Egeria
-Egeria Project using MySQL, MVC, user register and user login with jwt
+Egeria Project using MySQL, NodeJS (implementing MVC), login with jwt, user register with crypto
