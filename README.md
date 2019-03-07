@@ -1,2 +1,2 @@
-# MVC-egeria
-repo egeria project using MVC
+# Egeria
+Egeria Project using MySQL, MVC, user register and user login with jwt
