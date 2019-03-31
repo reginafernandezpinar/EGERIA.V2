@@ -1,6 +1,6 @@
 const userModel = require('../models/userModel');
 var crypt = require('../crypt-util');
-const Token = require('../auth/token')
+const Token = require('../auth/token');
 
 
 function loginUser(req, res) {

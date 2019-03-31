@@ -1,16 +1,16 @@
-var crypto      = require('crypto'),
+var crypto = require('crypto'),
     cipher_seed = 'some_random_charactersconst SECRET = "U2FsdGVkX18ZUVvShFSES21qHsQEqZXMxQ9zgHy";';
 
-const encrypt = function(text) {
-    var cipher  = crypto.createCipher('aes-256-cbc', cipher_seed),
+const encrypt = function (text) {
+    var cipher = crypto.createCipher('aes-256-cbc', cipher_seed),
         crypted = cipher.update(text, 'utf8', 'hex');
 
     crypted += cipher.final('hex');
     return crypted;
 };
 
-const decrypt = function(text) {
-    var decipher  = crypto.createDecipher('aes-256-cbc', cipher_seed),
+const decrypt = function (text) {
+    var decipher = crypto.createDecipher('aes-256-cbc', cipher_seed),
         decrypted = decipher.update(text, 'hex', 'utf8');
 
     decrypted += decipher.final('utf8');
